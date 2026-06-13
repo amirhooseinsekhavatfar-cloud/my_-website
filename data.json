@@ -1,0 +1,542 @@
+{
+  "profile": {
+    "nameEn": "Amirhosein Sekhavatfar",
+    "nameFa": "امیرحسین سخاوت‌فر",
+    "titleEn": "Electrical Engineering Student",
+    "titleFa": "دانشجوی مهندسی برق",
+    "tags": "",
+    "bioEn": "",
+    "bioFa": "",
+    "email": "",
+    "linkedin": "",
+    "github": "https://github.com/amirhooseinsekhavatfar-cloud",
+    "location": "",
+    "avatar": "",
+    "handle": "",
+    "feedbioEn": "",
+    "feedbioFa": "",
+    "aboutCards": [
+      {
+        "label": "University",
+        "labelFa": "دانشگاه",
+        "value": "University Name",
+        "icon": "🎓"
+      },
+      {
+        "label": "Major",
+        "labelFa": "رشته",
+        "value": "Electrical Engineering",
+        "icon": "⚡"
+      },
+      {
+        "label": "Year",
+        "labelFa": "سال",
+        "value": "3rd Year",
+        "icon": "📅"
+      },
+      {
+        "label": "Focus",
+        "labelFa": "تخصص",
+        "value": "Industrial Automation",
+        "icon": "🏭"
+      }
+    ]
+  },
+  "settings": {
+    "theme": "",
+    "layout": "",
+    "font": "",
+    "favicon": "",
+    "pageTitle": ""
+  },
+  "skillChips": {
+    "tools": "",
+    "protocols": "",
+    "langs": ""
+  },
+  "projects": [
+    {
+      "imgHtml": "<div style=\"width:100%;height:100%\"><iframe src=\"https://www.aparat.com/video/video/embed/videohash/wvtpun4/vt/frame\" allowfullscreen=\"true\" webkitallowfullscreen=\"true\" style=\"width:100%;height:100%;border:none;display:block\"></iframe></div>",
+      "titleEn": "Water Tank Level Control with PLC",
+      "titleFa": "کنترل سطح مخزن آب با PLC",
+      "descEn": "Automatic water tank level control using Siemens S7-1200 PLC and HMI panel. Ladder logic programming with SCADA monitoring.",
+      "descFa": "کنترل خودکار سطح مخزن آب با PLC زیمنس S7-1200 و پنل HMI. برنامه‌نویسی Ladder Logic با مانیتورینگ SCADA.",
+      "tags": [
+        "PLC",
+        "HMI",
+        "Ladder Logic",
+        "SCADA"
+      ]
+    },
+    {
+      "imgHtml": "<img src=\"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80\" style=\"width:100%;height:100%;object-fit:cover\"><div class=\"project-img-overlay\"></div>",
+      "titleEn": "ESP32 Wi-Fi LED Controller",
+      "titleFa": "کنترلر LED وای‌فای ESP32",
+      "descEn": "Remote LED brightness and color control using ESP32 microcontroller via web interface and MQTT protocol.",
+      "descFa": "کنترل از راه دور روشنایی و رنگ LED با میکروکنترلر ESP32 از طریق وب اینترفیس و پروتکل MQTT.",
+      "tags": [
+        "ESP32",
+        "IoT",
+        "MQTT",
+        "Wi-Fi"
+      ]
+    },
+    {
+      "imgHtml": "<img src=\"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80\" style=\"width:100%;height:100%;object-fit:cover\"><div class=\"project-img-overlay\"></div>",
+      "titleEn": "IoT Monitoring Dashboard",
+      "titleFa": "داشبورد مانیتورینگ IoT",
+      "descEn": "Real-time temperature and humidity monitoring dashboard using ESP32 sensors, MQTT broker, and Node-RED visualization.",
+      "descFa": "داشبورد مانیتورینگ لحظه‌ای دما و رطوبت با سنسورهای ESP32، MQTT و Node-RED.",
+      "tags": [
+        "IoT",
+        "Node-RED",
+        "ESP32",
+        "Dashboard"
+      ]
+    },
+    {
+      "imgHtml": "<img src=\"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80\" style=\"width:100%;height:100%;object-fit:cover\"><div class=\"project-img-overlay\"></div>",
+      "titleEn": "Industrial Automation Simulations",
+      "titleFa": "شبیه‌سازی‌های اتوماسیون صنعتی",
+      "descEn": "Various industrial process simulations in TIA Portal including conveyor control, motor starter, and PID control systems.",
+      "descFa": "شبیه‌سازی‌های متنوع فرآیندهای صنعتی در TIA Portal شامل کنترل نوار نقاله، استارتر موتور و سیستم‌های PID.",
+      "tags": [
+        "PLC",
+        "TIA Portal",
+        "Simulation",
+        "PID"
+      ]
+    },
+    {
+      "imgHtml": "<img src=\"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80\" style=\"width:100%;height:100%;object-fit:cover\"><div class=\"project-img-overlay\"></div>",
+      "titleEn": "Modbus Communication Projects",
+      "titleFa": "پروژه‌های ارتباط Modbus",
+      "descEn": "Modbus RTU/TCP communication between PLC, HMI, and sensors. Python scripts for data reading and logging from industrial devices.",
+      "descFa": "ارتباط Modbus RTU/TCP بین PLC، HMI و سنسورها. اسکریپت‌های Python برای خواندن و ذخیره داده از دستگاه‌های صنعتی.",
+      "tags": [
+        "Modbus",
+        "Python",
+        "PLC",
+        "RS485"
+      ]
+    },
+    {
+      "imgHtml": "<img src=\"https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80\" style=\"width:100%;height:100%;object-fit:cover\"><div class=\"project-img-overlay\"></div>",
+      "titleEn": "Electrical Panel Design",
+      "titleFa": "طراحی تابلو برق",
+      "descEn": "Design and layout of industrial electrical control panels including circuit diagrams, component selection, and wiring documentation.",
+      "descFa": "طراحی و چیدمان تابلوهای کنترل برق صنعتی شامل نقشه مدار، انتخاب قطعات و مستندات سیم‌کشی.",
+      "tags": [
+        "AutoCAD",
+        "Electrical",
+        "Panel",
+        "Design"
+      ]
+    }
+  ],
+  "customProjects": [],
+  "skills": [],
+  "customSkills": [],
+  "education": [],
+  "experience": [],
+  "certs": [],
+  "highlights": [
+    {
+      "id": "plc",
+      "emoji": "⚙️",
+      "title": "PLC Projects",
+      "titleFa": "پروژه‌های PLC",
+      "count": 8,
+      "color": "#0066cc"
+    },
+    {
+      "id": "iot",
+      "emoji": "📡",
+      "title": "IoT Builds",
+      "titleFa": "ساخته‌های IoT",
+      "count": 5,
+      "color": "#00884d"
+    },
+    {
+      "id": "code",
+      "emoji": "💻",
+      "title": "Coding Tips",
+      "titleFa": "نکات برنامه‌نویسی",
+      "count": 12,
+      "color": "#6622aa"
+    },
+    {
+      "id": "learn",
+      "emoji": "📚",
+      "title": "Learning",
+      "titleFa": "یادگیری",
+      "count": 20,
+      "color": "#cc6600"
+    },
+    {
+      "id": "music",
+      "emoji": "🎵",
+      "title": "Music",
+      "titleFa": "موسیقی",
+      "count": 6,
+      "color": "#cc0055"
+    },
+    {
+      "id": "life",
+      "emoji": "☕",
+      "title": "Daily Life",
+      "titleFa": "زندگی روزانه",
+      "count": 15,
+      "color": "#004466"
+    },
+    {
+      "id": "sim",
+      "emoji": "🖥️",
+      "title": "Simulations",
+      "titleFa": "شبیه‌سازی‌ها",
+      "count": 4,
+      "color": "#336600"
+    },
+    {
+      "id": "tools",
+      "emoji": "🔧",
+      "title": "Tools & Tips",
+      "titleFa": "ابزارها",
+      "count": 9,
+      "color": "#663300"
+    }
+  ],
+  "customHighlights": [],
+  "deletedHighlights": [],
+  "stories": [
+    {
+      "id": 1,
+      "label": "PLC Tips",
+      "emoji": "⚙️",
+      "time": "2h ago",
+      "slides": [
+        {
+          "emoji": "⚙️",
+          "title": "PLC Tip #1",
+          "body": "در TIA Portal از Watch Table برای دیباگ real-time استفاده کن — بدون نیاز به STOP کردن PLC"
+        },
+        {
+          "emoji": "💡",
+          "title": "PLC Tip #2",
+          "body": "LADDR parameter در instruction های جدید S7-1200 همون hardware identifier هست که از device config میگیری"
+        },
+        {
+          "emoji": "🔧",
+          "title": "PLC Tip #3",
+          "body": "برای نوشتن DB های بهینه، آرایه ها رو با مضارب ۸ بایت تعریف کن تا memory fragmentation کم بشه"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "ESP32",
+      "emoji": "📡",
+      "time": "5h ago",
+      "slides": [
+        {
+          "emoji": "📡",
+          "title": "ESP32 WiFi",
+          "body": "WiFi.setAutoReconnect(true) فراموش نکنی — باعث میشه ESP32 بعد از قطع اتصال خودش reconnect کنه"
+        },
+        {
+          "emoji": "⚡",
+          "title": "Deep Sleep",
+          "body": "با esp_sleep_enable_timer_wakeup میتونی ESP32 رو به deep sleep بفرستی و مصرف رو به 10µA برسونی"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Python",
+      "emoji": "🐍",
+      "time": "Today",
+      "slides": [
+        {
+          "emoji": "🐍",
+          "title": "Python for PLC",
+          "body": "کتابخانه python-snap7 بهت اجازه میده مستقیم از Python با S7 PLC ها ارتباط برقرار کنی"
+        },
+        {
+          "emoji": "📊",
+          "title": "Data Logging",
+          "body": "Pandas + Matplotlib کنار هم یه ابزار قوی برای آنالیز داده های صنعتی هستن — سریع یاد بگیر"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "IoT Ideas",
+      "emoji": "🌐",
+      "time": "Yesterday",
+      "slides": [
+        {
+          "emoji": "🌐",
+          "title": "MQTT Protocol",
+          "body": "MQTT سبک‌ترین پروتکل برای IoT هست. برای ESP32 از کتابخانه PubSubClient استفاده کن"
+        },
+        {
+          "emoji": "🏭",
+          "title": "Industry 4.0",
+          "body": "ترکیب PLC + ESP32 + MQTT + Node-RED = یه سیستم monitoring صنعتی ارزون و قدرتمند"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Life",
+      "emoji": "☕",
+      "time": "2d ago",
+      "slides": [
+        {
+          "emoji": "☕",
+          "title": "Study Break",
+          "body": "بعد از هر ۴۵ دقیقه مطالعه، ۱۵ دقیقه استراحت کن — Pomodoro Technique واقعاً کار میکنه"
+        },
+        {
+          "emoji": "🎯",
+          "title": "Goals 2025",
+          "body": "امسال هدفم: گرفتن TIA Portal V18 Certificate و ساختن یه پروژه IoT کامل با SCADA"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Music",
+      "emoji": "🎵",
+      "time": "3d ago",
+      "slides": [
+        {
+          "emoji": "🎵",
+          "title": "Coding Music",
+          "body": "وقتی روی پروژه‌های سنگین کار میکنم، Lo-Fi و Synthwave بهترین انتخابن برای تمرکز"
+        },
+        {
+          "emoji": "🎸",
+          "title": "Favorites",
+          "body": "Linkin Park + Daft Punk + Hans Zimmer — ترکیبی که همیشه انرژی میده حین کار"
+        }
+      ]
+    }
+  ],
+  "customStories": [],
+  "deletedStories": [],
+  "feedPosts": [],
+  "reels": [],
+  "musicTracks": [
+    {
+      "id": 1,
+      "title": "Numb",
+      "artist": "Linkin Park",
+      "emoji": "🎸",
+      "genre": "Rock",
+      "duration": "3:07",
+      "youtubeId": "kXYiU_JCYtU"
+    },
+    {
+      "id": 2,
+      "title": "In the End",
+      "artist": "Linkin Park",
+      "emoji": "🎸",
+      "genre": "Rock",
+      "duration": "3:36",
+      "youtubeId": "eVTXPUF4Oz4"
+    },
+    {
+      "id": 3,
+      "title": "Get Lucky",
+      "artist": "Daft Punk",
+      "emoji": "🎹",
+      "genre": "Electronic",
+      "duration": "4:07",
+      "youtubeId": "5NV6Rdv1h3Q"
+    },
+    {
+      "id": 4,
+      "title": "Harder, Better, Faster",
+      "artist": "Daft Punk",
+      "emoji": "🎹",
+      "genre": "Electronic",
+      "duration": "3:45",
+      "youtubeId": "yydNF8tuVmU"
+    },
+    {
+      "id": 5,
+      "title": "Time",
+      "artist": "Hans Zimmer",
+      "emoji": "🎼",
+      "genre": "Cinematic",
+      "duration": "4:35",
+      "youtubeId": "RzzakLs8J04"
+    },
+    {
+      "id": 6,
+      "title": "Interstellar Theme",
+      "artist": "Hans Zimmer",
+      "emoji": "🎼",
+      "genre": "Cinematic",
+      "duration": "2:43",
+      "youtubeId": "UDVtMYqUAyw"
+    },
+    {
+      "id": 7,
+      "title": "Stressed Out",
+      "artist": "Twenty One Pilots",
+      "emoji": "🎵",
+      "genre": "Alternative",
+      "duration": "3:22",
+      "youtubeId": "pXRviuL6vMY"
+    },
+    {
+      "id": 8,
+      "title": "Heathens",
+      "artist": "Twenty One Pilots",
+      "emoji": "🎵",
+      "genre": "Alternative",
+      "duration": "3:46",
+      "youtubeId": "UprcpdwuwCg"
+    },
+    {
+      "id": 9,
+      "title": "Lo-Fi Study Beat",
+      "artist": "Lo-Fi Chill",
+      "emoji": "☕",
+      "genre": "Lo-Fi",
+      "duration": "∞",
+      "youtubeId": "jfKfPfyJRdk"
+    },
+    {
+      "id": 10,
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "emoji": "👑",
+      "genre": "Rock",
+      "duration": "5:54",
+      "youtubeId": "fJ9rUzIMcZQ"
+    }
+  ],
+  "customMusic": [],
+  "pdfCodes": [
+    {
+      "id": "plc_ladder",
+      "title": "PLC Ladder Logic Cheat Sheet",
+      "titleFa": "چیت‌شیت Ladder Logic",
+      "lang": "Ladder Logic",
+      "desc": "Basic Siemens S7 ladder logic contacts, coils, timers, counters and program organization blocks.",
+      "descFa": "مخاطبین، کویل‌ها، تایمرها، شمارنده‌ها و بلوک‌های سازمان‌دهی برنامه زیمنس S7",
+      "tags": [
+        "PLC",
+        "S7-1200",
+        "Siemens",
+        "IEC 61131"
+      ],
+      "pages": 4,
+      "size": "180 KB",
+      "icon": "cpu",
+      "code": "// === SIEMENS S7 LADDER LOGIC REFERENCE ===\n// Network 1: Start/Stop Circuit\n// Normally Open contact (NO)  → |  |\n// Normally Closed contact (NC)→ |/|\n// Output coil                  → ( )\n\n|I0.0|------|I0.1/|------( Q0.0 )\n[START]     [STOP]        [Motor]\n\n// Network 2: Latching Circuit (Self-holding)\n|I0.0|---|Q0.0|------|I0.1/|---( Q0.0 )\n[START]  [Latch]     [STOP]   [Motor]\n\n// Network 3: TON Timer (On-Delay)\n|I0.0|---[TON T1, PT:5s]---( Q0.1 )\nWhen I0.0 = TRUE, timer starts\nAfter 5s, Q0.1 activates\n\n// Network 4: CTU Counter\n|I0.0|---[CTU C1, PV:10]\n|I0.1|---[R C1]          // Reset\n|C1.Q|------------------( Q0.2 ) // Done\n\n// Network 5: Comparison\n|I0.0|---[MW10 >= 100]---( Q0.3 )\n// Activate if memory word >= 100\n\n// Data Types Reference:\n// I  = Input byte (I0.0, I0.1...)\n// Q  = Output byte (Q0.0, Q0.1...)\n// M  = Marker/Flag (M0.0, MW10...)\n// DB = Data Block (DB1.DBX0.0)\n// T  = Timer (T1)  C = Counter (C1)\n\n// OBs (Organization Blocks):\n// OB1   = Main Program (cyclic)\n// OB100 = Startup\n// OB35  = Cyclic Interrupt (100ms)\n// OB121 = Programming Error"
+    },
+    {
+      "id": "python_iot",
+      "title": "Python IoT Quick Reference",
+      "titleFa": "مرجع سریع Python IoT",
+      "lang": "Python",
+      "desc": "ESP32 MicroPython, MQTT, socket programming and sensor reading code snippets.",
+      "descFa": "قطعه کدهای MicroPython برای ESP32، MQTT، برنامه‌نویسی socket و خواندن سنسور",
+      "tags": [
+        "Python",
+        "MicroPython",
+        "ESP32",
+        "MQTT",
+        "IoT"
+      ],
+      "pages": 6,
+      "size": "240 KB",
+      "icon": "code",
+      "code": "# === PYTHON IoT CHEAT SHEET ===\n\n# 1. ESP32 WiFi Connection (MicroPython)\nimport network, time\ndef connect_wifi(ssid, password):\n    wlan = network.WLAN(network.STA_IF)\n    wlan.active(True)\n    wlan.connect(ssid, password)\n    timeout = 10\n    while not wlan.isconnected() and timeout > 0:\n        time.sleep(1); timeout -= 1\n    if wlan.isconnected():\n        print(\"IP:\", wlan.ifconfig()[0])\n        return True\n    return False\n\n# 2. MQTT with umqtt (MicroPython)\nfrom umqtt.simple import MQTTClient\nclient = MQTTClient(\"esp32_client\",\n                    \"broker.hivemq.com\",\n                    port=1883)\nclient.connect()\nclient.publish(b\"sensors/temp\", b\"25.4\")\n\n# Subscribe with callback:\ndef on_message(topic, msg):\n    print(f\"Topic: {topic}, Msg: {msg}\")\nclient.set_callback(on_message)\nclient.subscribe(b\"control/motor\")\n\n# 3. DHT22 Sensor Reading\nfrom machine import Pin\nimport dht\nsensor = dht.DHT22(Pin(4))\nsensor.measure()\ntemp = sensor.temperature()   # °C\nhum  = sensor.humidity()      # %RH\n\n# 4. Modbus RTU (Python + pymodbus)\nfrom pymodbus.client import ModbusSerialClient\nclient = ModbusSerialClient(\n    method=\"rtu\", port=\"/dev/ttyUSB0\",\n    baudrate=9600, parity=\"N\",\n    stopbits=1, bytesize=8\n)\nclient.connect()\nrr = client.read_holding_registers(\n    address=0, count=10, slave=1)\nprint(rr.registers)\n\n# 5. Snap7 — Python to S7 PLC\nimport snap7\nplc = snap7.client.Client()\nplc.connect(\"192.168.0.1\", 0, 1)\ndata = plc.read_area(\n    snap7.types.Areas.DB, 1, 0, 10)\nimport snap7.util as u\nvalue = u.get_real(data, 0)   # float"
+    },
+    {
+      "id": "esp32_pinout",
+      "title": "ESP32 Pin & GPIO Reference",
+      "titleFa": "مرجع پین و GPIO اسپرسیف",
+      "lang": "C / Arduino",
+      "desc": "ESP32 pinout, GPIO capabilities, PWM channels, ADC inputs and common code patterns.",
+      "descFa": "پین‌اوت ESP32، قابلیت‌های GPIO، کانال‌های PWM، ورودی‌های ADC و الگوهای کد رایج",
+      "tags": [
+        "ESP32",
+        "Arduino",
+        "C++",
+        "GPIO",
+        "PWM"
+      ],
+      "pages": 3,
+      "size": "150 KB",
+      "icon": "zap",
+      "code": "// === ESP32 ARDUINO CHEAT SHEET ===\n\n// GPIO Capabilities:\n// Pins 0,2,4,12-15,25-27 → Input + Output\n// Pins 34,35,36,39        → Input ONLY\n// Pins 6-11               → SPI Flash (DO NOT USE)\n\n// 1. Basic Digital I/O\n#define LED_PIN   2\n#define BTN_PIN  34\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n  pinMode(BTN_PIN, INPUT_PULLUP);\n}\nvoid loop() {\n  if (!digitalRead(BTN_PIN))\n    digitalWrite(LED_PIN, HIGH);\n  else\n    digitalWrite(LED_PIN, LOW);\n}\n\n// 2. PWM (LED Dimming / Motor Speed)\nconst int freq = 5000;\nconst int ch = 0, res = 8;\nledcSetup(ch, freq, res);\nledcAttachPin(LED_PIN, ch);\nledcWrite(ch, 128);  // 50% duty cycle\n\n// 3. ADC (Analog Read)\nint raw = analogRead(34); // 0-4095\nfloat volt = raw * (3.3 / 4095.0);\n\n// 4. I2C Communication\n#include <Wire.h>\nWire.begin(SDA_PIN, SCL_PIN);\nWire.beginTransmission(0x3C); // OLED\nWire.write(0x00);\nWire.endTransmission();\n\n// 5. Deep Sleep\n#include <esp_sleep.h>\nesp_sleep_enable_timer_wakeup(\n    10 * 1000000ULL); // 10 seconds\nesp_deep_sleep_start();\n// Consumes ~10µA in deep sleep\n\n// 6. WiFi + HTTP GET\n#include <WiFi.h>\n#include <HTTPClient.h>\nWiFi.begin(\"SSID\",\"PASS\");\nwhile(WiFi.status()!=WL_CONNECTED)\n  delay(500);\nHTTPClient http;\nhttp.begin(\"http://api.example.com/data\");\nint code = http.GET();\nString payload = http.getString();"
+    },
+    {
+      "id": "scada_sql",
+      "title": "SCADA Data & SQL Reference",
+      "titleFa": "مرجع داده SCADA و SQL",
+      "lang": "SQL / Python",
+      "desc": "SQL queries for SCADA historian data, time-series analysis and alarm management.",
+      "descFa": "کوئری‌های SQL برای داده historian، آنالیز سری‌های زمانی و مدیریت آلارم",
+      "tags": [
+        "SCADA",
+        "SQL",
+        "WinCC",
+        "Historian",
+        "Python"
+      ],
+      "pages": 5,
+      "size": "200 KB",
+      "icon": "database",
+      "code": "-- === SCADA / HISTORIAN SQL REFERENCE ===\n\n-- 1. Query last 24h sensor values\nSELECT TagName, DateTime, Value\nFROM AnalogDynamic\nWHERE TagName = 'Tank_Level'\n  AND DateTime >= DATEADD(HOUR,-24,GETDATE())\nORDER BY DateTime DESC;\n\n-- 2. Hourly averages (time-series)\nSELECT\n  TagName,\n  DATEPART(HOUR, DateTime) AS Hour,\n  AVG(Value) AS AvgValue,\n  MAX(Value) AS MaxValue,\n  MIN(Value) AS MinValue\nFROM AnalogDynamic\nWHERE DateTime >= DATEADD(DAY,-7,GETDATE())\nGROUP BY TagName, DATEPART(HOUR, DateTime)\nORDER BY Hour;\n\n-- 3. Alarm analysis\nSELECT\n  AlarmTag,\n  COUNT(*) AS AlarmCount,\n  AVG(DATEDIFF(MINUTE, AckTime, ClearTime))\n    AS AvgAckTimeMin\nFROM AlarmLog\nWHERE EventTime >= DATEADD(MONTH,-1,GETDATE())\n  AND Priority = 1  -- Critical alarms\nGROUP BY AlarmTag\nORDER BY AlarmCount DESC;\n\n-- Python: WinCC OA / InfluxDB query\n# pip install influxdb-client\nfrom influxdb_client import InfluxDBClient\nclient = InfluxDBClient(\n    url=\"http://localhost:8086\",\n    token=\"YOUR_TOKEN\",\n    org=\"scada_org\")\nquery = \"\"\"\nfrom(bucket:\"sensors\")\n  |> range(start: -24h)\n  |> filter(fn:(r) => r._field == \"value\")\n  |> aggregateWindow(every:1m, fn:mean)\n\"\"\"\ntables = client.query_api().query(query)\nfor table in tables:\n    for record in table.records:\n        print(record.get_time(), record.get_value())"
+    },
+    {
+      "id": "tia_shortcuts",
+      "title": "TIA Portal Keyboard Shortcuts",
+      "titleFa": "میانبرهای کیبورد TIA Portal",
+      "lang": "Reference",
+      "desc": "Essential TIA Portal shortcuts for faster PLC programming, debugging and navigation.",
+      "descFa": "میانبرهای ضروری TIA Portal برای برنامه‌نویسی، دیباگ و ناوبری سریع‌تر",
+      "tags": [
+        "TIA Portal",
+        "Siemens",
+        "PLC",
+        "Shortcuts"
+      ],
+      "pages": 2,
+      "size": "90 KB",
+      "icon": "tool",
+      "code": "=== TIA PORTAL KEYBOARD SHORTCUTS ===\n\n[ GENERAL ]\nCtrl+S         → Save project\nCtrl+Z         → Undo\nCtrl+Y         → Redo  \nCtrl+F         → Find & Replace\nCtrl+G         → Go to (line/address)\nF1             → Help\n\n[ EDITOR - LADDER (LAD) ]\nCtrl+Enter     → Insert new network\nCtrl+D         → Delete network\nCtrl+X/C/V     → Cut / Copy / Paste network\nF6             → Normally Open contact  |  |\nF7             → Normally Closed contact |/|\nF8             → Output coil ( )\nCtrl+Shift+F8  → Set coil (S)\nCtrl+Shift+F7  → Reset coil (R)\nAlt+Insert     → Insert branch (parallel)\n\n[ EDITOR - SCL ]\nCtrl+Space     → IntelliSense / Autocomplete\nCtrl+/         → Comment / Uncomment line\nCtrl+Shift+F   → Auto-format code\nF9             → Toggle breakpoint\nF5             → Continue (debug)\nF10            → Step over\nF11            → Step into\n\n[ ONLINE / DEBUG ]\nCtrl+K         → Go Online\nCtrl+M         → Go Offline\nCtrl+Alt+M     → Monitor mode ON/OFF\nCtrl+Shift+O   → Open Watch Table\nCtrl+Alt+D     → Force values dialog\nCtrl+T         → Start simulation (PLCSIM)\n\n[ PROJECT NAVIGATION ]\nAlt+←/→        → Back / Forward\nCtrl+Shift+W   → Close all editors\nCtrl+Tab       → Switch between open editors\nF2             → Rename selected item\nDelete         → Delete selected item\n\n[ DIAGNOSTICS ]\nCtrl+D         → Hardware diagnostics\nShift+F8       → Accessible devices scan\nAlt+Enter      → Properties of selected item"
+    },
+    {
+      "id": "nodered_flows",
+      "title": "Node-RED IoT Flows",
+      "titleFa": "فلوهای IoT در Node-RED",
+      "lang": "JavaScript / JSON",
+      "desc": "Node-RED flow snippets for MQTT, HTTP API, dashboard widgets and PLC data integration.",
+      "descFa": "قطعه‌فلوهای Node-RED برای MQTT، HTTP API، ویجت‌های داشبورد و ادغام داده PLC",
+      "tags": [
+        "Node-RED",
+        "MQTT",
+        "IoT",
+        "Dashboard",
+        "JavaScript"
+      ],
+      "pages": 4,
+      "size": "170 KB",
+      "icon": "wifi",
+      "code": "// === NODE-RED CHEAT SHEET ===\n\n// 1. Function node — Process MQTT payload\n// Input: msg.payload = '{\"temp\":25.4,\"hum\":60}'\nconst data = JSON.parse(msg.payload);\nmsg.topic = \"sensor/processed\";\nmsg.payload = {\n    temperature: data.temp,\n    humidity: data.hum,\n    timestamp: new Date().toISOString(),\n    alert: data.temp > 30 ? \"HIGH TEMP\" : \"OK\"\n};\nreturn msg;\n\n// 2. Filter node (gate logic)\n// Only pass msg if temp > threshold\nconst threshold = flow.get(\"temp_threshold\") || 30;\nif (msg.payload.temperature > threshold) {\n    node.warn(\"Temperature exceeded: \" + msg.payload.temperature);\n    return msg;\n}\nreturn null; // Block message\n\n// 3. Modbus Read (node-red-contrib-modbus)\n// Config node: Modbus-Read\n{\n  \"dataType\": \"HoldingRegister\",\n  \"adr\": \"0\",\n  \"quantity\": \"10\",\n  \"rate\": 1,\n  \"rateUnit\": \"s\",\n  \"server\": \"ModbusServer\"\n}\n// Output: msg.payload = [100, 200, 150, ...]\n// msg.modbusRequest.address = 0\n\n// 4. HTTP Request to REST API\nmsg.url = \"http://192.168.1.100:5000/api/plc/status\";\nmsg.method = \"GET\";\nmsg.headers = {\"Content-Type\": \"application/json\"};\n// Connect to http-request node → response in msg.payload\n\n// 5. Dashboard Gauge config\n// ui_gauge node settings:\n{\n  \"group\": \"Sensors\",\n  \"label\": \"Tank Level\",\n  \"min\": 0, \"max\": 100,\n  \"unit\": \"%\",\n  \"colorLow\": \"#e74c3c\",\n  \"colorMid\": \"#f39c12\",\n  \"colorHigh\": \"#2ecc71\",\n  \"seg1\": 20, \"seg2\": 80\n}\n\n// 6. Store to InfluxDB\n// node-red-contrib-influxdb\nmsg.payload = [{\n    measurement: \"tank_level\",\n    fields: { value: msg.payload.level },\n    tags: { location: \"plant_1\" }\n}];\nreturn msg; // → influxdb out node"
+    }
+  ],
+  "customCodes": [],
+  "customPdfs": [],
+  "imgGallery": [],
+  "blogPosts": [],
+  "blogCats": []
+}
