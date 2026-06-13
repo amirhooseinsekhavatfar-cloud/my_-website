@@ -2906,6 +2906,8 @@ function adminNav(section, btn) {
 // ── Init Dashboard ──
 function initAdminDash() {
   loadProfileFields();
+  if (typeof initGithubSettingsUI === 'function') initGithubSettingsUI();
+  if (typeof showGithubFirstRunPrompt === 'function') setTimeout(showGithubFirstRunPrompt, 400);
   document.querySelectorAll('.adm-section').forEach(s => s.style.display = 'none');
   const defaultSection = document.getElementById('adm-section-profile');
   if (defaultSection) defaultSection.style.display = 'block';
@@ -4027,12 +4029,321 @@ window.adminNav = function(section, btn) {
   if (section === 'projects') setTimeout(initProjectDragDrop, 300);
 };
 
+// ═══════════════════════════════════════════════════════
+// GITHUB API SYNC — Persist admin changes to a GitHub repo
+// ═══════════════════════════════════════════════════════
+// Setup:
+// 1) Create a GitHub repo (can be the same one hosting this site, or a
+//    separate small data repo).
+// 2) Edit GH_PUBLIC_CONFIG below with your username/owner, repo name,
+//    branch and the path where the data file should live. This part is
+//    NOT secret — it just tells everyone's browser where to read the
+//    saved data from (read uses the public, unauthenticated API).
+// 3) In the admin panel, open the new "GitHub" tab, paste a Personal
+//    Access Token (fine-grained, with "Contents: Read and write" on
+//    that repo) and click "ذخیره تنظیمات". The token is stored only in
+//    YOUR browser's localStorage and is only ever sent to api.github.com.
+// 4) Use "⬆️ ذخیره روی GitHub" to push current local data, or
+//    "⬇️ بازیابی از GitHub" to pull the latest saved data into this browser.
+//    On every page load, the site automatically checks GitHub for newer
+//    data and applies it.
+
+const GH_PUBLIC_CONFIG = {
+  owner: '',                 // e.g. 'amirh-sekhavatfar'
+  repo: '',                  // e.g. 'portfolio-data'
+  branch: 'main',
+  path: 'data/site-data.json'
+};
+
+const GH_CFG_KEY = 'ahs_github_cfg';
+const GH_LAST_SYNC_KEY = 'ahs_github_last_sync';
+
+// All localStorage keys that make up the site's editable content
+const GH_SYNC_KEYS = [
+  'ahs_profile_data','ahs_feed_posts','ahs_custom_stories','ahs_deleted_stories',
+  'ahs_custom_music','ahs_custom_pdfs','ahs_custom_codes','ahs_theme','ahs_layout',
+  'ahs_custom_highlights','ahs_deleted_highlights','ahs_reels','ahs_custom_projects',
+  'ahs_custom_skills','ahs_skill_chips','ahs_custom_edu','ahs_custom_exp','ahs_custom_certs',
+  'ahs_font','ahs_blog_posts','ahs_blog_cats','ahs_img_gallery','ahs_favicon','ahs_pagetitle'
+];
+
+function getGithubConfig() {
+  let local = {};
+  try { local = JSON.parse(localStorage.getItem(GH_CFG_KEY) || '{}'); } catch(e) {}
+  return Object.assign({}, GH_PUBLIC_CONFIG, local);
+}
+
+function saveGithubConfig(cfg) {
+  try { localStorage.setItem(GH_CFG_KEY, JSON.stringify(cfg)); } catch(e){}
+}
+
+function githubApiUrl(cfg) {
+  const path = (cfg.path || GH_PUBLIC_CONFIG.path).replace(/^\/+/, '');
+  return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`;
+}
+
+function githubHeaders(cfg, withAuth) {
+  const headers = { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+  if (withAuth && cfg.token) headers['Authorization'] = 'Bearer ' + cfg.token;
+  return headers;
+}
+
+// UTF-8 safe base64 helpers
+function b64EncodeUnicode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(escape(atob(str)));
+}
+
+// Collect all editable data currently in localStorage
+function collectSiteData() {
+  const data = {};
+  GH_SYNC_KEYS.forEach(key => {
+    const val = localStorage.getItem(key);
+    if (val !== null) data[key] = val;
+  });
+  data._savedAt = new Date().toISOString();
+  return data;
+}
+
+// Apply a previously-saved data object back into localStorage
+function applySiteData(data) {
+  if (!data || typeof data !== 'object') return;
+  GH_SYNC_KEYS.forEach(key => {
+    if (Object.prototype.hasOwnProperty.call(data, key) && data[key] !== undefined) {
+      try { localStorage.setItem(key, data[key]); } catch(e){}
+    }
+  });
+}
+
+// Fetch current data file from GitHub. Returns {sha, content} or null if missing.
+// withAuth=true uses the saved token (needed for private repos / to get sha for updates).
+async function githubFetchFile(withAuth) {
+  const cfg = getGithubConfig();
+  if (!cfg.owner || !cfg.repo) throw new Error('GitHub تنظیم نشده');
+  const url = githubApiUrl(cfg) + (cfg.branch ? `?ref=${encodeURIComponent(cfg.branch)}` : '');
+  const res = await fetch(url, { headers: githubHeaders(cfg, withAuth) });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error('GitHub error ' + res.status);
+  const json = await res.json();
+  const content = JSON.parse(b64DecodeUnicode(json.content.replace(/\n/g, '')));
+  return { sha: json.sha, content };
+}
+
+// Create or update the data file on GitHub (requires a token with write access)
+async function githubSaveFile(dataObj, message) {
+  const cfg = getGithubConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) throw new Error('GitHub تنظیم نشده (Owner/Repo/Token را وارد کنید)');
+  const url = githubApiUrl(cfg);
+  let sha;
+  try {
+    const existing = await githubFetchFile(true);
+    if (existing) sha = existing.sha;
+  } catch(e) {}
+  const body = {
+    message: message || 'Update site data via admin panel',
+    content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2))
+  };
+  if (cfg.branch) body.branch = cfg.branch;
+  if (sha) body.sha = sha;
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, githubHeaders(cfg, true)),
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error((err && err.message) || ('GitHub error ' + res.status));
+  }
+  return res.json();
+}
+
+// Push all current local data to GitHub
+async function syncToGithub() {
+  const cfg = getGithubConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    showAdminToast('⚠️ ابتدا تنظیمات GitHub (Owner/Repo/Token) را وارد کنید');
+    return;
+  }
+  showAdminToast('⏳ در حال ذخیره روی GitHub...');
+  try {
+    const data = collectSiteData();
+    await githubSaveFile(data, 'Update site data via admin panel');
+    try { localStorage.setItem(GH_LAST_SYNC_KEY, data._savedAt); } catch(e){}
+    showAdminToast('✓ تغییرات روی GitHub ذخیره شد');
+  } catch(e) {
+    console.error('syncToGithub failed:', e);
+    showAdminToast('✗ خطا در ذخیره روی GitHub: ' + e.message);
+  }
+}
+
+// Pull the latest saved data from GitHub and apply it locally
+async function syncFromGithub(reload) {
+  if (reload === undefined) reload = true;
+  const cfg = getGithubConfig();
+  if (!cfg.owner || !cfg.repo) {
+    showAdminToast('⚠️ ابتدا تنظیمات GitHub (Owner/Repo) را وارد کنید');
+    return;
+  }
+  showAdminToast('⏳ در حال دریافت از GitHub...');
+  try {
+    const result = await githubFetchFile(!!cfg.token);
+    if (!result) {
+      showAdminToast('فایلی روی GitHub پیدا نشد');
+      return;
+    }
+    applySiteData(result.content);
+    try { localStorage.setItem(GH_LAST_SYNC_KEY, result.content._savedAt || ''); } catch(e){}
+    showAdminToast('✓ اطلاعات از GitHub بازیابی شد');
+    if (reload) setTimeout(() => location.reload(), 700);
+  } catch(e) {
+    console.error('syncFromGithub failed:', e);
+    showAdminToast('✗ خطا در دریافت از GitHub: ' + e.message);
+  }
+}
+
+// On every page load (admin or visitor), silently check GitHub for newer
+// data than what's stored locally and apply it. Only reloads the page
+// once per browser session if newer data was found, to avoid loops.
+async function checkGithubForUpdates() {
+  const cfg = getGithubConfig();
+  if (!cfg.owner || !cfg.repo) return; // not configured yet
+  try {
+    const result = await githubFetchFile(false);
+    if (!result) return;
+    const remoteSavedAt = result.content && result.content._savedAt || '';
+    const localSavedAt = localStorage.getItem(GH_LAST_SYNC_KEY) || '';
+    if (remoteSavedAt && remoteSavedAt !== localSavedAt) {
+      applySiteData(result.content);
+      localStorage.setItem(GH_LAST_SYNC_KEY, remoteSavedAt);
+      if (!sessionStorage.getItem('ahs_gh_reloaded')) {
+        sessionStorage.setItem('ahs_gh_reloaded', '1');
+        location.reload();
+      }
+    }
+  } catch(e) {
+    console.warn('GitHub update check failed:', e);
+  }
+}
+checkGithubForUpdates();
+
+// ── GitHub settings tab inside the admin panel ──
+function initGithubSettingsUI() {
+  if (document.getElementById('adm-nav-github')) return; // already injected
+  const navBtnRef = document.querySelector('.adm-nav-btn');
+  const sectionRef = document.querySelector('.adm-section');
+  if (!navBtnRef || !sectionRef) return;
+  const navParent = navBtnRef.parentElement;
+  const sectionParent = sectionRef.parentElement;
+
+  const btn = document.createElement('button');
+  btn.id = 'adm-nav-github';
+  btn.className = 'adm-nav-btn';
+  btn.textContent = '🔗 GitHub';
+  btn.addEventListener('click', function(){ adminNav('github', this); });
+  navParent.appendChild(btn);
+
+  const section = document.createElement('div');
+  section.id = 'adm-section-github';
+  section.className = 'adm-section';
+  section.style.display = 'none';
+  section.innerHTML = `
+    <h3 style="margin-top:0">اتصال به GitHub</h3>
+    <p style="opacity:.7;font-size:.85em;line-height:1.7">برای ذخیره دائمی تغییرات روی یک ریپوی گیت‌هاب، اطلاعات زیر را وارد کنید. توکن باید دسترسی Read/Write به Contents ریپو را داشته باشد.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:420px">
+      <label>Owner / Username<input type="text" id="gh_owner" placeholder="e.g. amirh-sekhavatfar" style="width:100%;margin-top:4px;padding:8px;border-radius:6px"></label>
+      <label>Repository<input type="text" id="gh_repo" placeholder="e.g. portfolio-data" style="width:100%;margin-top:4px;padding:8px;border-radius:6px"></label>
+      <label>Branch<input type="text" id="gh_branch" placeholder="main" style="width:100%;margin-top:4px;padding:8px;border-radius:6px"></label>
+      <label>مسیر فایل داده<input type="text" id="gh_path" placeholder="data/site-data.json" style="width:100%;margin-top:4px;padding:8px;border-radius:6px"></label>
+      <label>Personal Access Token<input type="password" id="gh_token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width:100%;margin-top:4px;padding:8px;border-radius:6px"></label>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="saveGithubSettings()">ذخیره تنظیمات</button>
+      <button class="btn-primary" onclick="syncToGithub()">⬆️ ذخیره روی GitHub</button>
+      <button class="btn-primary" onclick="syncFromGithub()">⬇️ بازیابی از GitHub</button>
+    </div>
+    <p id="gh_status" style="opacity:.6;font-size:.8em;margin-top:12px"></p>
+    <p style="opacity:.5;font-size:.75em;margin-top:6px">⚠️ توکن فقط در localStorage همین مرورگر ذخیره می‌شود و فقط به api.github.com ارسال می‌شود.</p>
+  `;
+  sectionParent.appendChild(section);
+
+  const cfg = getGithubConfig();
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+  setVal('gh_owner', cfg.owner);
+  setVal('gh_repo', cfg.repo);
+  setVal('gh_branch', cfg.branch || 'main');
+  setVal('gh_path', cfg.path || GH_PUBLIC_CONFIG.path);
+  setVal('gh_token', cfg.token);
+
+  const lastSync = localStorage.getItem(GH_LAST_SYNC_KEY);
+  const statusEl = document.getElementById('gh_status');
+  if (statusEl && lastSync) statusEl.textContent = 'آخرین همگام‌سازی: ' + new Date(lastSync).toLocaleString('fa-IR');
+}
+
+function saveGithubSettings() {
+  const getInputVal = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  const cfg = {
+    owner: getInputVal('gh_owner'),
+    repo: getInputVal('gh_repo'),
+    branch: getInputVal('gh_branch') || 'main',
+    path: getInputVal('gh_path') || GH_PUBLIC_CONFIG.path,
+    token: getInputVal('gh_token')
+  };
+  saveGithubConfig(cfg);
+  showAdminToast('✓ تنظیمات GitHub ذخیره شد');
+  const promptEl = document.getElementById('ghFirstRunPrompt');
+  if (promptEl) promptEl.remove();
+}
+
+// ── First-run prompt: nudge the admin to connect GitHub if not set up yet ──
+function showGithubFirstRunPrompt() {
+  if (sessionStorage.getItem('ahs_gh_prompt_dismissed')) return;
+  const cfg = getGithubConfig();
+  if (cfg.owner && cfg.repo && cfg.token) return; // already configured
+  if (document.getElementById('ghFirstRunPrompt')) return; // already shown
+
+  const overlay = document.createElement('div');
+  overlay.id = 'ghFirstRunPrompt';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;';
+  overlay.innerHTML = `
+    <div style="background:var(--bg-card,#11151c);color:var(--text,#fff);border:1px solid rgba(0,170,255,.4);border-radius:12px;max-width:420px;width:100%;padding:24px;text-align:center;direction:rtl;font-family:inherit">
+      <div style="font-size:32px;margin-bottom:8px">🔗</div>
+      <h3 style="margin:0 0 10px">اتصال به GitHub انجام نشده</h3>
+      <p style="opacity:.75;font-size:.9em;line-height:1.8;margin:0 0 18px">
+        برای اینکه تغییراتی که در پنل ادمین انجام می‌دی به‌صورت دائمی ذخیره شه (و برای همه‌ی بازدیدکننده‌ها نمایش داده بشه)،
+        باید یک‌بار اطلاعات ریپوی گیت‌هاب و توکن دسترسی رو در تب «🔗 GitHub» وارد کنی.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-primary" id="ghPromptGoBtn" style="padding:10px 18px;border-radius:8px;border:none;background:var(--neon,#00aaff);color:#fff;cursor:pointer">رفتن به تنظیمات GitHub</button>
+        <button id="ghPromptLaterBtn" style="padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:inherit;cursor:pointer">بعداً</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  document.getElementById('ghPromptGoBtn').addEventListener('click', () => {
+    overlay.remove();
+    const ghBtn = document.getElementById('adm-nav-github');
+    if (ghBtn) adminNav('github', ghBtn);
+  });
+  document.getElementById('ghPromptLaterBtn').addEventListener('click', () => {
+    sessionStorage.setItem('ahs_gh_prompt_dismissed', '1');
+    overlay.remove();
+  });
+}
+
 // ====== Global Save Changes button ======
 function saveAllChanges() {
   try {
     if (typeof saveProfile === 'function') saveProfile();
   } catch(e){}
   showAdminToast('✓ تمام تغییرات ذخیره شد');
+  // If GitHub sync is configured with a token, push changes automatically
+  const ghCfg = getGithubConfig();
+  if (ghCfg.owner && ghCfg.repo && ghCfg.token) {
+    syncToGithub();
+  }
 }
 
 // ====== Standalone Admin Page: auto prompt login ======
